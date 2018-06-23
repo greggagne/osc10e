@@ -1,5 +1,2 @@
-<<<<<<< HEAD
 some changes
-=======
 These are changes that need to be made.
->>>>>>> ex1

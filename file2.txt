@@ -1,5 +1,2 @@
-<<<<<<< HEAD
 some changes
-=======
 to this file
->>>>>>> ex1
