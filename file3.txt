@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 some changes
+=======
+as well as the other file.
+>>>>>>> ex1
