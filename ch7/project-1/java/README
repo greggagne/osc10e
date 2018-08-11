@@ -1,0 +1,12 @@
+This directory contains the necessary source files to implement and
+test a thread pool using Java synchronization.
+
+Files:
+
+- TestCancel.java (Covers specifics on thread cancelation in Java)
+
+- Client.java & Task.java (example client program that uses thread pool)
+
+- ThreadPool.java (skeleton of thread pool implementation)
+
+This project involves implementing the remainder of the ThreadPool.java class.
