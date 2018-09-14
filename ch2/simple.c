@@ -14,7 +14,7 @@
 #include <linux/kernel.h>
 
 /* This function is called when the module is loaded. */
-int simple_init(void)
+static int simple_init(void)
 {
        printk(KERN_INFO "Loading Module\n");
 
@@ -22,7 +22,7 @@ int simple_init(void)
 }
 
 /* This function is called when the module is removed. */
-void simple_exit(void) {
+static void simple_exit(void) {
 	printk(KERN_INFO "Removing Module\n");
 }
 

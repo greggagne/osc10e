@@ -24,7 +24,7 @@
 /**
  * Function prototypes
  */
-ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
+static ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
 
 static struct file_operations proc_ops = {
         .owner = THIS_MODULE,
@@ -33,7 +33,7 @@ static struct file_operations proc_ops = {
 
 
 /* This function is called when the module is loaded. */
-int proc_init(void)
+static int proc_init(void)
 {
 
         // creates the /proc/hello entry
@@ -47,7 +47,7 @@ int proc_init(void)
 }
 
 /* This function is called when the module is removed. */
-void proc_exit(void) {
+static void proc_exit(void) {
 
         // removes the /proc/hello entry
         remove_proc_entry(PROC_NAME, NULL);
@@ -70,7 +70,7 @@ void proc_exit(void) {
  * count:
  * pos:
  */
-ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos)
+static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos)
 {
         int rv = 0;
         char buffer[BUFFER_SIZE];
@@ -99,4 +99,3 @@ module_exit( proc_exit );
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Hello Module");
 MODULE_AUTHOR("SGG");
-
