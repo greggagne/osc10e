@@ -9,7 +9,7 @@
  * Operating System Concepts - 10th Edition
  * Copyright John Wiley & Sons - 2018
  */
-
+#include <linux/version.h>
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
@@ -26,11 +26,19 @@
  */
 static ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,6,0)
+#define HAVE_PROC_OPS
+#endif
+#ifdef HAVE_PROC_OPS
+static const struct proc_ops proc_ops = {
+	.proc_read = proc_read
+};
+#else
 static struct file_operations proc_ops = {
         .owner = THIS_MODULE,
         .read = proc_read,
 };
-
+#endif
 
 /* This function is called when the module is loaded. */
 static int proc_init(void)
