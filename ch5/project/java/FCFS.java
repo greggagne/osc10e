@@ -20,7 +20,7 @@ public class FCFS implements Algorithm {
         System.out.println("Waiting itme = " + (double)waitingTime / tempSize );
         System.out.println("Waiting itme = " + (double)turnAroundTime/ tempSize );
     }
-
+//trying the push
     @Override
     public void schedule() {
 
