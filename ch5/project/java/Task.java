@@ -22,6 +22,11 @@ public class Task
     private int tid;
     private int priority;
     private int burst;
+    private double waitingTime;
+    private double completionTime;
+    private double burstTime;
+
+
 
     /**
      * We use an atomic integer to assign each task a unique task id.
