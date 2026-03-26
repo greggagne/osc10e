@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 		if (policy == SCHED_OTHER)
 			printf("SCHED_OTHER\n");
 		else if (policy == SCHED_RR)
-			printf("SCHED_OTHER\n");
+			printf("SCHED_RR\n");
 		else if (policy == SCHED_FIFO)
 			printf("SCHED_FIFO\n");
 	}
