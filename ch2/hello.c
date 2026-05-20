@@ -24,11 +24,13 @@
 /**
  * Function prototypes
  */
-static ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
+ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
 
-static struct file_operations proc_ops = {
-        .owner = THIS_MODULE,
-        .read = proc_read,
+static int proc_init(void);
+static void proc_exit(void);
+
+static const struct proc_ops proc_ops = {
+        .proc_read = proc_read,
 };
 
 
@@ -70,7 +72,7 @@ static void proc_exit(void) {
  * count:
  * pos:
  */
-static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos)
+ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos)
 {
         int rv = 0;
         char buffer[BUFFER_SIZE];
@@ -86,7 +88,9 @@ static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, 
         rv = sprintf(buffer, "Hello World\n");
 
         // copies the contents of buffer to userspace usr_buf
-        copy_to_user(usr_buf, buffer, rv);
+        if (copy_to_user(usr_buf, buffer, rv)) {
+		return -EFAULT;
+	}
 
         return rv;
 }
@@ -99,3 +103,4 @@ module_exit( proc_exit );
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Hello Module");
 MODULE_AUTHOR("SGG");
+
