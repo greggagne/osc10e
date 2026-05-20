@@ -24,10 +24,11 @@ static long l_pid;
  */
 static ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
 static ssize_t proc_write(struct file *file, const char __user *usr_buf, size_t count, loff_t *pos);
+static int proc_init(void);
+static void proc_exit(void) ;
 
-static struct file_operations proc_ops = {
-        .owner = THIS_MODULE,
-        .read = proc_read,
+static struct proc_ops proc_ops = {
+        .proc_read = proc_read,
 };
 
 /* This function is called when the module is loaded. */
@@ -95,7 +96,7 @@ static ssize_t proc_write(struct file *file, const char __user *usr_buf, size_t 
         /* copies user space usr_buf to kernel buffer */
         if (copy_from_user(k_mem, usr_buf, count)) {
 		printk( KERN_INFO "Error copying from user\n");
-                return -1;
+                return -EFAULT;
         }
 
 	/**
