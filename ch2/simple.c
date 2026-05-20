@@ -13,6 +13,9 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 
+static int simple_init(void);
+static void simple_exit(void);
+
 /* This function is called when the module is loaded. */
 static int simple_init(void)
 {
