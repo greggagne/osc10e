@@ -56,7 +56,7 @@ int main(void)
 		read(fd[READ_END], read_msg, BUFFER_SIZE);
 		printf("child read %s\n",read_msg);
 
-		/* close the write end of the pipe */
+		/* close the read end of the pipe */
 		close(fd[READ_END]);
 	}
 
