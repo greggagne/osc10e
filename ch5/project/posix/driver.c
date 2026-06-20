@@ -26,8 +26,14 @@ int main(int argc, char *argv[])
     int priority;
     int burst;
 
+    if (argc < 2)
+    {
+        fprintf(stderr, "Please specify a schedule file.\n");
+        return EXIT_FAILURE;
+    }
+
     in = fopen(argv[1],"r");
-    
+
     while (fgets(task,SIZE,in) != NULL) {
         temp = strdup(task);
         name = strsep(&temp,",");
@@ -45,5 +51,5 @@ int main(int argc, char *argv[])
     // invoke the scheduler
     schedule();
 
-    return 0;
+    return EXIT_SUCCESS;
 }

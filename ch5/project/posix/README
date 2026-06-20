@@ -6,9 +6,17 @@ schedule_rr.c
 schedule_priority.c
 schedule_priority_rr.c
 
-The supporting files invoke the appropriate scheduling algorithm. 
+Each of these files will need to #include "schedulers.h"
+and define add() and schedule() functions
 
-For example, to build the FCFS scheduler, enter
+The supporting files invoke the appropriate scheduling algorithm.
+
+run make to build all schedulers, run:
+
+make
+
+You can also build specific scheduler programs.
+For example, to build the FCFS scheduler enter:
 
 make fcfs
 

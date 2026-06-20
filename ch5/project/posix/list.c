@@ -1,18 +1,18 @@
 /**
  * Various list operations
  */
- 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
 #include "list.h"
 #include "task.h"
-
+#include "cpu.h"
 
 // add a new task to the list of tasks
 void insert(struct node **head, Task *newTask) {
-    // add the new task to the list 
+    // add the new task to the list
     struct node *newNode = malloc(sizeof(struct node));
 
     newNode->task = newTask;
@@ -29,6 +29,7 @@ void delete(struct node **head, Task *task) {
     // special case - beginning of list
     if (strcmp(task->name,temp->task->name) == 0) {
         *head = (*head)->next;
+        free(temp);
     }
     else {
         // interior or last element in the list
@@ -40,6 +41,7 @@ void delete(struct node **head, Task *task) {
         }
 
         prev->next = temp->next;
+        free(temp);
     }
 }
 
@@ -49,7 +51,7 @@ void traverse(struct node *head) {
     temp = head;
 
     while (temp != NULL) {
-        printf("[%s] [%d] [%d]\n",temp->task->name, temp->task->priority, temp->task->burst);
+        run(temp->task, temp->task->burst);
         temp = temp->next;
     }
 }
